@@ -4,6 +4,12 @@
 import Foundation
 
 public struct ARCollabErrorHelper {
+    
+    public enum ConfigureError : Error {
+        case noValueWasFoundInEnvironment(key: String)
+        case cannotParseCorrectly(key: String)
+    }
+    
     public enum JWTError : Error {
         case missingAuthorizationBearerHeader
     }
@@ -36,6 +42,17 @@ public struct ARCollabErrorHelper {
         case providedDataCantBeUsedToCreateAvatar
         case userIsBlocked (username: String)
         case userIsDeleted (username: String)
+    }
+}
+
+extension ARCollabErrorHelper.ConfigureError : LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .noValueWasFoundInEnvironment(key: let key):
+            return "No value was found at the given public key environment '\(key)'."
+        case .cannotParseCorrectly(key: let key):
+            return "Cannot parse: '\(key)' correctly."
+        }
     }
 }
 
