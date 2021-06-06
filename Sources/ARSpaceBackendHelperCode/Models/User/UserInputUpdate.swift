@@ -99,7 +99,7 @@ extension UserInputUpdate : Validatable {
     ///   - db: DB to find matches.
     /// - Throws: Error of type UsersServiceErrorHelper.UsersError.userAlreadyRegistered.
     /// - Returns: An error message or boolean true flag indicating the check was successful.
-    func validationValuesForUniqueness (db: Database) throws -> EventLoopFuture<Bool> {
+    public func validationValuesForUniqueness (db: Database) throws -> EventLoopFuture<Bool> {
         
         // 1. Check if a new "email" is specified
         if let email = self.email {
@@ -126,7 +126,7 @@ extension UserInputUpdate : Validatable {
     /// - Throws: Errors due to absence of expected regexes in the AppValues entity dictionary or DB, as well as value validation errors with  provision of rules.
     /// - Returns: An error message or boolean true flag indicating the check was successful.
     /// - Remark: Currently, username, password are being checked.
-    func validationValuesAgainstRegexes(req: Request) throws  ->  EventLoopFuture<Bool> {
+    public func validationValuesAgainstRegexes(req: Request) throws  ->  EventLoopFuture<Bool> {
         // 1. Search for a regex for checking 'password' in AppValues entity dictionary.
         if let passwordRegex = AppValues.shared.regexes.first(where: {$0.key.contains("password")})?.value {
             // 2. Check if the password is specified.
