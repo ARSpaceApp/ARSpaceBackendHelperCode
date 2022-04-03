@@ -36,7 +36,7 @@ public extension Set where Element: Option {
     }
 }
 
-extension UserGender {
+public extension UserGender {
     var description : String {
         switch self {
         case .male:
