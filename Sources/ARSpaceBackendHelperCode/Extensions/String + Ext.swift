@@ -2,6 +2,7 @@
 //  Created by Dmitry Samartcev on 06.06.2021.
 
 import Foundation
+import CoreFoundation
 
 public extension String {
     func capitalizingFirstLetter() -> String {
